@@ -1,8 +1,8 @@
 import './App.css';
-import React from 'react';
+import React, { useState } from 'react';
 import Webcam from "react-webcam";
 import { callCognitiveApi } from './callCognitiveApi';
-
+import Graph from './Graph';
 const videoConstraints = {
   width: 400,
   height: 400,
@@ -44,24 +44,38 @@ function App() {
     },
     [webcamRef]
   );
-  return (
-    <div className="App">
-      <Webcam
-        audio={false}
-        height={400}
-        ref={webcamRef}
-        screenshotFormat="image/jpeg"
-        width={400}
-        videoConstraints={videoConstraints}
-      />
-      <button onClick={capture}>Capture photo</button>
 
-      {imgSrc && (
-        <img
-          src={imgSrc}
-        />
-      )}
+  return (
+
+  <div class="flex flex-col h-screen">
+    <div class="flex flex-row h-1/2">
+        <div class="basis-1/2 border-2">
+          <div class="flex flex-col justify-center items-center py-8 px-8 rounded-lg">
+            <Webcam
+              audio={false}
+              height={300}
+              ref={webcamRef}
+              screenshotFormat="image/jpeg"
+              width={300}
+              videoConstraints={videoConstraints}
+              style={{borderRadius:"10px"}}
+            />
+          <button>start</button>
+        </div>
+      </div>
+      <div class="basis-1/2 border-2">
+        02
+      </div>
     </div>
+    <div class="flex flex-row h-1/2">
+      
+          <Graph/>
+      
+      <div class="basis-1/2 border-2">
+        04
+      </div>
+    </div>
+  </div>
   );
 }
 
